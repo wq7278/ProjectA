@@ -19,10 +19,15 @@
 
 package com.xuggle.xuggler.demos;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.util.List;
+import java.util.Map;
 
 import com.qdapps.vision.ColorIdentifier;
+import com.qdapps.vision.Cst;
 import com.xuggle.xuggler.ICodec;
 import com.xuggle.xuggler.IContainer;
 import com.xuggle.xuggler.IContainerFormat;
@@ -64,6 +69,8 @@ import com.xuggle.xuggler.Utils;
  * 
  */
 public class DisplayWebcamVideo {
+	
+
 	/**
 	 * Takes a FFMPEG webcam driver name, and a device name, opens the webcam,
 	 * and displays its video in a Swing window.
@@ -128,7 +135,7 @@ public class DisplayWebcamVideo {
 		IMetaData params = IMetaData.make();
 
 		params.setValue("framerate", "100/1");
-		params.setValue("video_size", "320*240");
+		params.setValue("video_size", "640*480");
 
 		// Open up the container
 		int retval = container.open(deviceName, IContainer.Type.READ, format, false, true, params, null);
@@ -241,14 +248,26 @@ public class DisplayWebcamVideo {
 //						System.out.println(javaImage.getWidth()+","+javaImage.getHeight());
 
 						ColorIdentifier colorIden = new ColorIdentifier(134, 208, 134);
-						BufferedImage colorRange = colorIden.identfy(javaImage);
+						Map <String, Object>resultMap = colorIden.identfy(javaImage);
+						BufferedImage debugImg = (BufferedImage)resultMap.get(Cst.DebugImg);
+						List<Rectangle> rects = (List<Rectangle> )resultMap.get(Cst.RectangleList);
 						Graphics2D g2d = javaImage.createGraphics();
-						g2d.drawImage(colorRange, null, 0, 0);
-
-//							Color transparent = new Color(0, 0, 100, 50);
-//							g2d.setColor(transparent);
-//							g2d.fill(recs[0]);
-//							g2d.dispose();
+						Color transparent = new Color(200, 0, 200, 200);
+						
+						if (debugImg!=null){
+							g2d.drawImage(debugImg, null, 0, 0);
+						}
+						g2d.setColor(transparent);
+						if (rects!=null ){
+							for (Rectangle rectangle: rects)
+								if (rectangle!=null){
+									
+									g2d.draw(rectangle);
+									
+							}
+						}
+						g2d.dispose();
+							
 //						
 
 						// and display it on the Java Swing window
