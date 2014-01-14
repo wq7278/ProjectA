@@ -135,7 +135,7 @@ public class DisplayWebcamVideo {
 		IMetaData params = IMetaData.make();
 
 		params.setValue("framerate", "100/1");
-		params.setValue("video_size", "640*480");
+		params.setValue("video_size", "1280*720");
 
 		// Open up the container
 		int retval = container.open(deviceName, IContainer.Type.READ, format, false, true, params, null);

@@ -1,0 +1,5 @@
+#surefire
+#Sun Jan 12 22:28:07 CST 2014
+user.dir=/home/qwang/git/ProjectA
+localRepository=/home/qwang/.m2/repository
+basedir=/home/qwang/git/ProjectA
