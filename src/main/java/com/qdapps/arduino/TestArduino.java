@@ -9,12 +9,11 @@ public class TestArduino {
 	 */
 	public static void main(String[] args) {
 
+		TestArduino ta = new TestArduino();
 		if (args!= null && args.length > 0){
 			System.out.println("Using iName: " + args[0]);
-			
+			ta.iname = args[0];
 		}
-		TestArduino ta = new TestArduino();
-		ta.iname = args[0];
 		ta.start();
 
 	}
