@@ -21,7 +21,7 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <mainClass>com.qdapps.arduino.TestArduino</mainClass>
+              <mainClass>com.qdapps.arduino.TestUdoo</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -50,5 +50,10 @@
             <artifactId>firmata_arduino</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+   		 <groupId>commons-io</groupId>
+    		<artifactId>commons-io</artifactId>
+    		<version>2.4</version>
+		</dependency>
     </dependencies>
 </project>
